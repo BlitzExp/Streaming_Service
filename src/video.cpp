@@ -1,72 +1,78 @@
 #include "../include/video.hpp"
 
-video::video(int Id_, std::string name_, int duration_, std::string gender_, std::string status_) {
-    Id = Id_;
-    name = name_;
-    duration = duration_;
-    gender = gender_;
-    status = status_;
+video::video(int Id, std::string name, int duration, std::string gender, std::string status) {
+    Id_ = Id;
+    name_ = name;
+    duration_ = duration;
+    gender_ = gender;
+    status_ = status;
 };
 
 void video::show() {
-    std::string x = "Título: " + name + "\n" + "Calificación: " + format(grade);
+    std::string x = "Título: " + name_ + "\n" + "Calificación: " + format(grade_);
     std::cout << x << "\n" << std::endl;
 }
 
 void video::expandedview() {
-    std::string x = "Título: " + name + "\n" + "Id:" + "Duracion: " + std::to_string(duration) + "\n" +
-                    "Género: " + gender + "\n" + "Calificación: " + format(grade) + "\n" +
-                    "Status: " + status;
+    std::string x = "Título: " + name_ + "\n" + "Id:" + "Duracion: " + std::to_string(duration_) + "\n" +
+                    "Género: " + gender_ + "\n" + "Calificación: " + format(grade_) + "\n" +
+                    "Status: " + status_;
     std::cout << x << "\n" << std::endl;
 }
 
 void video::grading() {
-    int grade_;
-    std::cout << "Usted esta calificando: " << name << std::endl;
+    int grade;
+    std::cout << "Usted esta calificando: " << name_ << std::endl;
     std::cout << "Introduzca un valor entre 1 y 5: ";
-    std::cin >> grade_;
+    std::cin >> grade;
     std::cout << std::endl;
-    while (grade_ > 5 || grade_ < 1) {
+    while (grade > 5 || grade < 1) {
         std::cout << "Calificación inválida, porfavor coloque una entre 1-5: ";
-        std::cin >> grade_;
+        std::cin >> grade;
         std::cout << std::endl;
     }
-    if (grade != -1) {
-        average(grade_);
+    if (grade_ != -1) {
+        average(grade);
     } else {
-        grade = grade_;
+        grade_ = grade;
     }
-    std::cout << "Nueva calificación: " << grade << std::endl;
+    std::cout << "Nueva calificación: " << grade_ << std::endl;
 }
 
-void video::average(int grade_) { grade = (grade + grade_) / 2; }
+void video::average(int grade) { grade_ = (grade_ + grade) / 2; }
 
-void video::setId(int Id_) { Id = Id_; }
+void video::setId(int Id) { Id_ = Id; }
 
-void video::setname(std::string name_) { name = name_; }
+void video::setname(std::string name) { name_ = name; }
 
-void video::setgender(std::string gender_) { gender = gender_; }
+void video::setgender(std::string gender) { gender_ = gender; }
 
-void video::setgrade(int grade_) { grade = grade_; }
+void video::setgrade(int grade) { grade_ = grade; }
 
-void video::setstatus(std::string status_) { status = status_; }
+void video::setstatus(std::string status) { status_ = status; }
 
-void video::setduration(int duration_) { duration = duration_; }
+void video::setduration(int duration) { duration_ = duration; }
 
-int video::getId() { return Id; }
+int video::getId() { return Id_; }
 
-std::string video::getname() { return name; }
+std::string video::getname() { return name_; }
 
-std::string video::getgender() { return gender; }
+std::string video::getgender() { return gender_; }
 
-int video::getgrade() { return grade; }
+int video::getgrade() { return grade_; }
 
-int video::getduration() { return duration; }
+int video::getduration() { return duration_; }
 
-std::string video::getstatus() { return status; }
+std::string video::getstatus() { return status_; }
 
 std::string video::format(float value) {
     char buffer[50];
     sprintf(buffer, "%.2f", value);
     return std::string(buffer);
+}
+bool operator>(const video object1, const video object2) {
+    if (object1.grade_ > object2.grade_) {
+        return true;
+    }
+    return false;
 }

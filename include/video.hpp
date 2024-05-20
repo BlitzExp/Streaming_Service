@@ -25,6 +25,8 @@ public:
     int getduration();
     std::string getstatus();
 
+    friend bool operator>(const video object1, const video object2);
+
 private:
     void average(int grade_);
     std::string format(float value);
