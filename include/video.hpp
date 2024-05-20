@@ -6,10 +6,10 @@
 
 class video {
 public:
-    video(int Id, std::string name, float duration, std::string gender, int grade, std::string status);
-    std::string show();
-    std::string expandedview();
-    void grading();
+    video(int Id, std::string name, float duration, std::string gender, float grade, std::string status);
+    std::string show(); //titulo y calificacion
+    std::string expandedview(); //toda la info
+    float grading(int grade_); //
 
     void setId(int Id_);
     void setname(std::string name_);
@@ -24,12 +24,12 @@ public:
     std::string getstatus();
 
 private:
-    void average();
+    void average(int grade_);
     int Id;
     std::string name;
     float duration;
     std::string gender;
-    int grade;
+    float grade;
     std::string status;
     
 };
