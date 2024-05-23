@@ -24,17 +24,23 @@ int main() {
         cout << endl;
         switch (num) {
             case 1:
+                Shrek.show();
+                Shrek.expandedview();
                 Shrek.grading();
                 break;
             case 2:
+                Madmax.show();
+                Madmax.expandedview();
                 Madmax.grading();
                 break;
             case 3:
+                Tron.show();
+                Tron.expandedview();
                 Tron.grading();
                 break;
             case 4:
                 for (const auto& movie : movies) {
-                    std::cout << movie->getname() << " (Grade: " << movie->getgrade() << ")\n";
+                    std::cout << movie->getname() << "\n Grade: " << movie->getgrade() << "\n";
                 }
             case 5:
                 break;
