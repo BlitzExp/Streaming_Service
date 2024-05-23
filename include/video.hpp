@@ -11,12 +11,12 @@ public:
     void expandedview();  // toda la info
     void grading();       //
 
-    void setId(int Id_);
-    void setname(std::string name_);
-    void setgender(std::string gender_);
-    void setgrade(int grade_);
-    void setduration(int duration_);
-    void setstatus(std::string status_);
+    void setId(int Id);
+    void setname(std::string name);
+    void setgender(std::string gender);
+    void setgrade(int grade);
+    void setduration(int duration);
+    void setstatus(std::string status);
 
     int getId();
     std::string getname();
@@ -29,13 +29,13 @@ public:
 
 private:
     void average(int grade_);
-    std::string format(float value);
-    int Id;
-    std::string name;
-    int duration;
-    std::string gender;
-    float grade = -1;
-    std::string status;
+    std::string format(float value_);
+    int Id_;
+    std::string name_;
+    int duration_;
+    std::string gender_;
+    float grade_ = -1;
+    std::string status_;
 };
 
 #endif
