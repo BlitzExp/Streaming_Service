@@ -6,7 +6,7 @@
 
 class video {
 public:
-    video(int Id, std::string name, int duration, std::string gender, std::string status);
+    video(int Id, std::string name, int duration, float grade, std::string gender, std::string status);
     void show();          // titulo y calificacion
     void expandedview();  // toda la info
     void grading();       //
@@ -21,7 +21,7 @@ public:
     int getId();
     std::string getname();
     std::string getgender();
-    int getgrade();
+    float getgrade();
     int getduration();
     std::string getstatus();
 
