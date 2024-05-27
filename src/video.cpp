@@ -14,7 +14,7 @@ void video::show() {
     std::cout << x << "\n" << std::endl;
 }
 
-void video::expandedview() {
+void video::showInfo() {
     std::string x = "Título: " + name_ + "\n" + "Id:" + "Duracion: " + std::to_string(duration_) + "\n" +
                     "Género: " + gender_ + "\n" + "Calificación: " + format(grade_) + "\n" +
                     "Status: " + status_;

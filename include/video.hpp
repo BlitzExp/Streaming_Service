@@ -7,9 +7,9 @@
 class video {
 public:
     video(int Id, std::string name, int duration, float grade, std::string gender, std::string status);
-    void show();          // titulo y calificacion
-    void expandedview();  // toda la info
-    void grading();       //
+    void show();      // titulo y calificacion
+    void showInfo();  // toda la info
+    void grading();   //
 
     void setId(int Id);
     void setname(std::string name);
@@ -27,7 +27,7 @@ public:
 
     friend bool operator>(const video object1, const video object2);
 
-private:
+protected:
     void average(int grade_);
     std::string format(float value_);
     int Id_;
