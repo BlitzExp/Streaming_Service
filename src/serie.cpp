@@ -32,3 +32,10 @@ void Serie::showInfo() {
 std::string Serie::getepiName() { return epiName_; }
 
 std::string Serie::getserieName() { return serieName_; }
+
+bool operator<(const Serie object1, const Serie object2) {
+    if (object1.epiNumber_ < object2.epiNumber_) {
+        return true;
+    }
+    return false;
+}

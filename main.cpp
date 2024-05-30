@@ -48,9 +48,6 @@ int menufilm(vector<video*> movies) {
     for (int i = 0; i < movies.size(); i++) {
         std::cout << i + 1 << ". " << movies[i]->getname() << " (Grade: " << movies[i]->getgrade() << " )\n";
     };
-    /*cout << "1. " << movies[0]->getname() << endl;
-    cout << "2. " << movies[1]->getname() << endl;
-    cout << "3. " << movies[2]->getname() << endl;*/
     cout << "4. Salir" << endl;
     cin >> num;
     cout << endl;
@@ -69,16 +66,13 @@ int menufilm(vector<video*> movies) {
 
 int menuseries(vector<Serie*> series) {
     int num = 0;
-    // std::sort(series.begin(), series.end(), [](video* a, video* b) { return *a > *b; });
-    cout << "¿Cuál episodio de serie quieres ver?(Coloca un número)" << endl;
+    std::sort(series.begin(), series.end(), [](Serie* a, Serie* b) { return *a < *b; });
+    cout << "¿Cuál episodio quieres ver?(Coloca un número)" << endl;
     for (int i = 0; i < series.size(); i++) {
         std::cout << i + 1 << ". " << series[i]->getepiName() << "( Serie: " << series[i]->getserieName()
                   << " )"
                   << "\n";
     };
-    /*cout << "1. " << series[0]->getname() << endl;
-    cout << "2. " << series[1]->getname() << endl;
-    cout << "3. " << series[2]->getname() << endl;*/
     cout << series.size() + 1 << ". Salir" << endl;
     cin >> num;
     cout << endl;

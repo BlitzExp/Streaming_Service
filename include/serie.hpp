@@ -22,11 +22,13 @@ public:
 
     void setData(int epiNumber, std::string epiName, std::string serieName, int season);
 
-    void showInfo();
+    void showInfo() override;
 
     std::string getepiName();
 
     std::string getserieName();
+
+    friend bool operator<(const Serie object1, const Serie object2);
 };
 
 #endif
