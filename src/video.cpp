@@ -78,3 +78,10 @@ bool operator>(const video object1, const video object2) {
     }
     return false;
 }
+
+bool operator==(const video object1, const video object2) {
+    if (object1.gender_ == object2.gender_) {
+        return true;
+    }
+    return false;
+}

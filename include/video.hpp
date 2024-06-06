@@ -25,6 +25,7 @@ public:
     int getduration();
     std::string getstatus();
 
+    friend bool operator==(const video object1, const video object2);
     friend bool operator>(const video object1, const video object2);
 
 protected:
