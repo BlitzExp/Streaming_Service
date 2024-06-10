@@ -13,11 +13,11 @@ void menuseries(vector<vector<Serie*>> series);
 
 int main() {
     int num = 0;
-    video Shrek = video(23, "Shrek", 95, 4.9, "Comedia", "Finished");
+    video Shrek = video(23, "Shrek", 95, 5, "Comedia", "Finished");
     video Madmax = video(26, "Mad Max", 125, 1, "Acción", "Finished");
-    video Tron = video(88, "Tron", 120, 5, "Acción", "Finished");
+    video Tron = video(88, "Tron", 120, 3.5, "Acción", "Finished");
     video Immaculate = video(666, "Immaculate", 89, 4, "Terror", "Pendiente");
-    video GodzillaMinusOne = video(77, "Godzilla Minus One", 124, 3.95, "Acción", "Finished");
+    video GodzillaMinusOne = video(77, "Godzilla Minus One", 124, 2, "Acción", "Finished");
     vector<video*> movies{&Tron, &Shrek, &GodzillaMinusOne, &Immaculate, &Madmax};
 
     // Serie Declaration:
@@ -88,105 +88,102 @@ int main() {
 void menufilm(vector<video*> movies) {
     int num = 0;
     string filtro = "";
-    std::sort(movies.begin(), movies.end(), [](video* a, video* b) { return *a > *b; });
     while (num != 9999) {
         int c = 0;
         int x = 0;
-        while (num != 9999) {
-            cout << "¿Cuál película quieres ver?(Coloca un número)" << endl;
-            for (int i = 0; i < movies.size(); i++) {
-                if (filtro == "") {
-                    std::cout << i + 1 << ". " << movies[i]->getname() << " (Grade: " << movies[i]->getgrade()
-                              << ", Gender: " << movies[i]->getgender() << ")\n";
-                } else {
-                    if (movies[i]->getgender() == filtro) {
-                        std::cout << c + 1 << ". " << movies[i]->getname()
-                                  << " (Grade: " << movies[i]->getgrade()
-                                  << ", Gender: " << movies[i]->getgender() << ")\n";
-                        c = c + 1;
-                    }
-                }
-            };
-            cout << movies.size() + 1 << ". Filtrar" << endl;
-            cout << movies.size() + 2 << ". Salir" << endl;
-            cin >> num;
-            system("clear");
-            if (num == movies.size() + 2) {
-                num = 9999;
-            } else if (num == movies.size() + 1) {
-                while (1) {
-                    vector<string> generos{};
-                    cout << "¿Qué genero de serie quieres ver?" << endl;
-                    string genero = "";
-                    bool isthere = false;
-                    for (int i = 0; i < movies.size(); i++) {
-                        genero = movies[i]->getgender();
-                        for (int j = 0; j < generos.size(); j++) {
-                            if (genero == generos[j]) {
-                                isthere = true;
-                                break;
-                            }
-                            isthere = false;
-                        }
-                        if (isthere == false) {
-                            generos.push_back(genero);
-                        }
-                    }
-                    for (int k = 0; k < generos.size(); k++) {
-                        cout << k + 1 << ". " << generos[k] << endl;
-                    }
-                    cout << generos.size() + 1 << ". Borrar Filtro\n" << endl;
-                    cout << generos.size() + 2 << ". Salir\n" << endl;
-                    cin >> num;
-                    system("clear");
-                    if (num == generos.size() + 2) {
-                        break;
-                    } else if (num == generos.size() + 1) {
-                        filtro = "";
-                        break;
-                    } else if (num < generos.size() + 1 && num > 0) {
-                        filtro = generos[num - 1];
-                        break;
-                    } else {
-                        cout << "Opción inválida" << endl;
-                    }
-                }
-            } else if (num < movies.size() + 1 && num > 0) {
-                while (1) {
-                    movies[num - 1]->show();
-                    cout << "¿Qué desea hacer?" << endl;
-                    cout << "1. Ver más información" << endl;
-                    cout << "2. Asignar calificación" << endl;
-                    cout << "3. Ver Película" << endl;
-                    cout << "4. Ver todas" << endl;
-                    cin >> x;
-                    system("clear");
-                    if (x == 4) {
-                        break;
-                    } else if (x == 2) {
-                        movies[num - 1]->grading();
-                    } else if (x == 1) {
-                        string trash;
-                        movies[num - 1]->showInfo();
-                        cout << "\nInserte una tecla para continuar" << endl;
-                        cin >> trash;
-                        cout << endl;
-                        system("clear");
-                    } else if (x == 3) {
-                        string trash;
-                        cout << "Usted esta viendo " << movies[num - 1]->getname() << endl;
-                        cout << "\nInserte una tecla para continuar" << endl;
-                        cin >> trash;
-                        cout << endl;
-                        system("clear");
-                    } else {
-                        cout << "Opción inválida, intente de nuevo.\n";
-                    }
-                }
+        std::sort(movies.begin(), movies.end(), [](video* a, video* b) { return *a > *b; });
+        cout << "¿Cuál película quieres ver?(Coloca un número)" << endl;
+        for (int i = 0; i < movies.size(); i++) {
+            if (filtro == "") {
+                std::cout << i + 1 << ". " << movies[i]->getname() << " (Grade: " << movies[i]->getgrade()
+                          << ", Gender: " << movies[i]->getgender() << ")\n";
             } else {
-                system("clear");
-                cout << "Opción Invalida, elija una opción válida porfavor \n" << endl;
+                if (movies[i]->getgender() == filtro) {
+                    std::cout << c + 1 << ". " << movies[i]->getname() << " (Grade: " << movies[i]->getgrade()
+                              << ", Gender: " << movies[i]->getgender() << ")\n";
+                    c = c + 1;
+                }
             }
+        };
+        cout << movies.size() + 1 << ". Filtrar" << endl;
+        cout << movies.size() + 2 << ". Salir" << endl;
+        cin >> num;
+        system("clear");
+        if (num == movies.size() + 2) {
+            num = 9999;
+        } else if (num == movies.size() + 1) {
+            while (1) {
+                vector<string> generos{};
+                cout << "¿Qué genero de serie quieres ver?" << endl;
+                string genero = "";
+                bool isthere = false;
+                for (int i = 0; i < movies.size(); i++) {
+                    genero = movies[i]->getgender();
+                    for (int j = 0; j < generos.size(); j++) {
+                        if (genero == generos[j]) {
+                            isthere = true;
+                            break;
+                        }
+                        isthere = false;
+                    }
+                    if (isthere == false) {
+                        generos.push_back(genero);
+                    }
+                }
+                for (int k = 0; k < generos.size(); k++) {
+                    cout << k + 1 << ". " << generos[k] << endl;
+                }
+                cout << generos.size() + 1 << ". Borrar Filtro\n" << endl;
+                cout << generos.size() + 2 << ". Salir\n" << endl;
+                cin >> num;
+                system("clear");
+                if (num == generos.size() + 2) {
+                    break;
+                } else if (num == generos.size() + 1) {
+                    filtro = "";
+                    break;
+                } else if (num < generos.size() + 1 && num > 0) {
+                    filtro = generos[num - 1];
+                    break;
+                } else {
+                    cout << "Opción inválida" << endl;
+                }
+            }
+        } else if (num < movies.size() + 1 && num > 0) {
+            while (1) {
+                movies[num - 1]->show();
+                cout << "¿Qué desea hacer?" << endl;
+                cout << "1. Ver más información" << endl;
+                cout << "2. Asignar calificación" << endl;
+                cout << "3. Ver Película" << endl;
+                cout << "4. Ver todas" << endl;
+                cin >> x;
+                system("clear");
+                if (x == 4) {
+                    break;
+                } else if (x == 2) {
+                    movies[num - 1]->grading();
+                } else if (x == 1) {
+                    string trash;
+                    movies[num - 1]->showInfo();
+                    cout << "\nInserte una tecla para continuar" << endl;
+                    cin >> trash;
+                    cout << endl;
+                    system("clear");
+                } else if (x == 3) {
+                    string trash;
+                    cout << "Usted esta viendo " << movies[num - 1]->getname() << endl;
+                    cout << "\nInserte una tecla para continuar" << endl;
+                    cin >> trash;
+                    cout << endl;
+                    system("clear");
+                } else {
+                    cout << "Opción inválida, intente de nuevo.\n";
+                }
+            }
+        } else {
+            system("clear");
+            cout << "Opción Invalida, elija una opción válida porfavor \n" << endl;
         }
     }
 }
