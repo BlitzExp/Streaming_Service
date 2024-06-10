@@ -1,6 +1,7 @@
 #ifndef SERIE_HPP
 #define SERIE_HPP
 #include "./video.hpp"
+#include <vector>
 
 class Serie : public video {
 private:
@@ -20,7 +21,12 @@ public:
           int epiNumber = 0,
           int season = 0);
 
-    void setData(int epiNumber, std::string epiName, std::string serieName, int season);
+    void setData(int epiNumber,
+                 std::string epiName,
+                 std::string serieName,
+                 std::string gender,
+                 int season,
+                 float grade);
 
     void showInfo() override;
 
@@ -28,7 +34,17 @@ public:
 
     std::string getserieName();
 
-    friend bool operator<(const Serie object1, const Serie object2);
+    int getseason();
+
+    int getepiNumber();
+
+    void grading();
+
+    friend int operator+(const Serie object1, const Serie object2);
+
+    friend bool operator==(const std::vector<Serie*> object1, const std::vector<Serie*> object2);
+
+    friend bool operator>(const std::vector<Serie*> object1, const std::vector<Serie*> object2);
 };
 
 #endif
