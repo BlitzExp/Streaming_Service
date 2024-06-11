@@ -12,6 +12,7 @@ void menufilm(vector<video*> movies);
 void menuseries(vector<vector<Serie*>> series);
 
 int main() {
+    system("clear");
     int num = 0;
     video Shrek = video(23, "Shrek", 95, 5, "Comedia", "Finished");
     video Madmax = video(26, "Mad Max", 125, 1, "Acción", "Finished");
@@ -52,7 +53,7 @@ int main() {
     Serie TMG1 = Serie();
     TMG1.setData(1, "Malditos Zombies", "Comedia", "The Midnight Gospel", 1, 3);
     Serie TMG2 = Serie();
-    TMG2.setData(7, "Muerte, me encantó conocerte", "Comedia", "The Midnight Gospel", 1, 5);
+    TMG2.setData(7, "Muerte", "Comedia", "The Midnight Gospel", 1, 5);
     Serie TMG3 = Serie();
     TMG3.setData(3, "¿Vomitas helado?", "Comedia", "The Midnight Gospel", 1, 2);
     vector<Serie*> TMG{&TMG1, &TMG2, &TMG3};
@@ -88,7 +89,11 @@ int main() {
 void menufilm(vector<video*> movies) {
     int num = 0;
     string filtro = "";
+    vector<video*> respaldo;
+    vector<video*> nuevas;
+    respaldo = movies;
     while (num != 9999) {
+        nuevas.clear();
         int c = 0;
         int x = 0;
         std::sort(movies.begin(), movies.end(), [](video* a, video* b) { return *a > *b; });
@@ -99,12 +104,16 @@ void menufilm(vector<video*> movies) {
                           << ", Gender: " << movies[i]->getgender() << ")\n";
             } else {
                 if (movies[i]->getgender() == filtro) {
+                    nuevas.push_back(movies[i]);
                     std::cout << c + 1 << ". " << movies[i]->getname() << " (Grade: " << movies[i]->getgrade()
                               << ", Gender: " << movies[i]->getgender() << ")\n";
                     c = c + 1;
                 }
             }
         };
+        if (filtro != "") {
+            movies = nuevas;
+        }
         cout << movies.size() + 1 << ". Filtrar" << endl;
         cout << movies.size() + 2 << ". Salir" << endl;
         cin >> num;
@@ -114,6 +123,7 @@ void menufilm(vector<video*> movies) {
         } else if (num == movies.size() + 1) {
             while (1) {
                 vector<string> generos{};
+                movies = respaldo;
                 cout << "¿Qué genero de serie quieres ver?" << endl;
                 string genero = "";
                 bool isthere = false;
@@ -138,12 +148,17 @@ void menufilm(vector<video*> movies) {
                 cin >> num;
                 system("clear");
                 if (num == generos.size() + 2) {
+                    movies = nuevas;
                     break;
                 } else if (num == generos.size() + 1) {
+                    movies = respaldo;
                     filtro = "";
+                    nuevas.clear();
                     break;
                 } else if (num < generos.size() + 1 && num > 0) {
+                    movies = respaldo;
                     filtro = generos[num - 1];
+                    nuevas.clear();
                     break;
                 } else {
                     cout << "Opción inválida" << endl;
@@ -192,7 +207,12 @@ void menuseries(vector<vector<Serie*>> series) {
     int num = 0;
     string filtro = "";
     int c = 0;
+    vector<vector<Serie*>> respaldo;
+    respaldo = series;
+    vector<vector<Serie*>> nuevas;
     while (num != 9999) {
+        c = 0;
+        nuevas.clear();
         std::sort(series.begin(), series.end(), [](vector<Serie*> a, vector<Serie*> b) { return a > b; });
         cout << "¿Cuál serie quieres ver?(Coloca un número)" << endl;
         for (int i = 0; i < series.size(); i++) {
@@ -205,6 +225,7 @@ void menuseries(vector<vector<Serie*>> series) {
                 std::cout << " (Grade: " << grade << ", Gender: " << series[i][0]->getgender() << ")\n";
             } else {
                 if (series[i][0]->getgender() == filtro) {
+                    nuevas.push_back(series[i]);
                     std::cout << c + 1 << ". " << series[i][0]->getserieName();
                     float grade = series[i][0]->getgrade();
                     for (int j = 1; j < series[i].size(); j++) {
@@ -215,6 +236,9 @@ void menuseries(vector<vector<Serie*>> series) {
                 }
             }
         };
+        if (filtro != "") {
+            series = nuevas;
+        }
         cout << series.size() + 1 << ". Filtrar" << endl;
         cout << series.size() + 2 << ". Salir" << endl;
         cin >> num;
@@ -224,6 +248,7 @@ void menuseries(vector<vector<Serie*>> series) {
         } else if (num == series.size() + 1) {
             while (1) {
                 vector<string> generos{};
+                series = respaldo;
                 cout << "¿Qué genero de serie quieres ver?" << endl;
                 string genero = "";
                 bool isthere = false;
@@ -248,12 +273,17 @@ void menuseries(vector<vector<Serie*>> series) {
                 cin >> num;
                 system("clear");
                 if (num == generos.size() + 2) {
+                    series = nuevas;
                     break;
                 } else if (num == generos.size() + 1) {
                     filtro = "";
+                    series = respaldo;
+                    nuevas.clear();
                     break;
                 } else if (num < generos.size() + 1 && num > 0) {
                     filtro = generos[num - 1];
+                    series = respaldo;
+                    nuevas.clear();
                     break;
                 } else {
                     cout << "Opción inválida" << endl;
